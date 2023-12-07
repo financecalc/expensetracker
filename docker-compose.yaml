@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  backend:
+    image: 'backend-app'
+    ports:
+      - '80:80'
+    build: backend
+    depends_on:
+      - db
+    networks:
+      - db-net
+
+  db:
+    image: 'postgres:13'
+    restart: always
+    hostname: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
+    env_file:
+      - .env
+    networks:
+      - db-net
+
+networks:
+  db-net:
+    name: shared-db-net
