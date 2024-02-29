@@ -1,0 +1,6 @@
+POST localhost:80 /import/csv
+Content-Type: application/json
+
+{
+  "csv": "date,name,price\n10-10-2020,mcdonalds,5"
+}
